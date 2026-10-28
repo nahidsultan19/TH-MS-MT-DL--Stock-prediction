@@ -1,0 +1,30 @@
+thesis-all-model/
+├── config/
+│   └── config.yaml                    ← Edit branch config, loss weights, epochs
+├── data/
+│   └── raw/
+│       └── merged_data.csv            ← Raw DSE data
+├── src/
+│   ├── data_loader.py
+│   ├── feature_engineering.py         ← 20 features
+│   ├── preprocessing.py               ← Sequence building
+│   ├── evaluate.py                    ← Metrics + plots
+│   ├── train.py                       ← Training loop
+│   ├── arima_features.py              ← ARIMA (disabled)
+│   └── models/
+│       ├── fusion.py                  ← Main model builder
+│       ├── cnn_lstm.py                ← CNN-LSTM branch
+│       └── transformer.py             ← Transformer branch
+├── experiments/
+│   ├── run_hybrid.py                  ← MAIN training
+│   ├── run_ablations.py               ← 5-variant ablation
+│   ├── run_arima_rolling.py           ← ARIMA baseline
+│   ├── run_random_forest.py           ← RF baseline
+│   ├── reevaluate.py                  ← Re-eval saved model
+│   └── check_models.py                ← Architecture check
+├── results/
+│   ├── models/                        ← Saved .h5 models
+│   ├── metrics/                       ← .xlsx result files
+│   ├── figures/                       ← Plots
+│   └── scalers/                       ← Saved scalers
+└── .env/                              ← Virtual environment

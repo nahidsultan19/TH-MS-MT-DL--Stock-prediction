@@ -1,0 +1,47 @@
+data:
+  raw_path: "data/raw/merged_data.csv"
+  min_records: 500
+  output_dir: "results"
+
+features:
+  daily_steps: 60
+  weekly_steps: 12
+  monthly_steps: 6
+
+split:
+  train_ratio: 0.8
+
+arima:
+  enabled: false
+  order: [2, 1, 2]
+  use_garch: true
+
+models:
+  cnn_lstm:    { enabled: true, lstm_units: 128, dropout: 0.2 }
+  transformer: { enabled: true, d_model: 64, n_heads: 4, num_layers: 2, dropout: 0.1 }
+  # mamba:       { enabled: true, d_state: 16, d_conv: 4, expand: 2 }
+
+# Which architecture on which scale (for hybrid)
+# hybrid:
+#   daily_branch:   "cnn_lstm"
+#   # weekly_branch:  "transformer"
+#   weekly_branch:  "cnn_lstm"
+#   monthly_branch: "cnn_lstm"
+
+hybrid:
+  daily_branch:   "cnn_lstm"
+  weekly_branch:  "transformer"
+  monthly_branch: "transformer"
+
+training:
+  epochs: 100
+  batch_size: 32
+  learning_rate: 0.0005
+  patience: 15
+  val_split: 0.1
+  cls_loss_weight: 0.05
+
+loss_weights:
+  daily: 0.5
+  weekly: 0.3
+  monthly: 0.2

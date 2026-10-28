@@ -1,0 +1,15 @@
+# Virtual Environment
+.env/
+
+# Large Data Files
+data/raw/*.csv
+data/processed/
+
+# Saved Models and Results (optional, but recommended to save space)
+results/models/*.h5
+results/figures/*.png
+results/metrics/*.xlsx
+
+# Python Cache
+__pycache__/
+*.pyc

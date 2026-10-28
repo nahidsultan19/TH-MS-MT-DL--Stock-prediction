@@ -1,0 +1,27 @@
+# 1. Activate environment
+cd C:\projects\thesis\thesis-all-model
+.env\Scripts\activate
+
+# 2. Verify config
+python -c "import yaml; c=yaml.safe_load(open('config/config.yaml')); print('Windows:', c['features']); print('Branches:', c['hybrid'])"
+
+# 3. Train main model
+python -m experiments.run_hybrid
+
+# 4. Run ARIMA baseline
+python -m experiments.run_arima_rolling
+
+# 5. Run Random Forest baseline
+python -m experiments.run_random_forest
+
+# 6. Re-evaluate with full metrics
+python -m experiments.reevaluate
+
+# 7. Check architecture
+python -m experiments.check_models
+
+# 8. Run 5 variant ablation
+python -m experiments.run_ablations
+
+# 9. Compare all models 
+python -m experiments.compare_models
